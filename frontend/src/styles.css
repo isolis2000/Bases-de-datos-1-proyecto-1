@@ -1,1 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
+.blueColor{
+    color: rgb(1, 76, 141) !important;
+  }
+  
+  .navbar-default { 
+    border-color: rgb(1, 76, 141) !important;
+    border-width: 2px !important;
+  }
+
+  .logo-size{
+    width: 150px;
+    height: 30px;
+    margin-right: 10px;
+    margin-left: 70px;
+  }
+  .icons{
+
+    font-size: 30px;
+    color: rgb(1, 76, 141);
+    margin-left: 10px;
+  }
+  .icons:hover{
+    color: black;
+    border: 1px;
+    border-color: black;
+    text-shadow: black;
+  }
+
+  .insta-logo{
+    margin-right: 70px;
+  }
+
+  .principal-image{
+    height: 600px;
+    width: 1920px;
+    opacity: 0.8;
+    filter: grayscale(70%);
+  }
+
+  .buttons{
+    background-color: rgb(1, 76, 141);
+    border-color: rgb(1, 76, 141);
+    color: white;
+    margin-left: 100px;
+  }
+  .buttons:hover{
+    background-color: white;
+    color: rgb(1, 76, 141);
+  }
+
+  .search{
+    border-color: rgb(1, 76, 141);
+    color: rgb(1, 76, 141);
+    margin-right: 100px;
+  }
+  .search:hover{
+    background-color: white;
+  }
+  .search-icon{
+    font-size: 23px;
+    color: rgb(1, 76, 141);
+    margin-right: 10px;
+  }
+
+  .footer{
+    background-color: rgb(1, 76, 141);
+    color:white;
+  }
