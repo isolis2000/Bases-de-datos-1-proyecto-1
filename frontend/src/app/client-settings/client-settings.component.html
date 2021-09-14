@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            
+            <div class="space pos">
+                <a [routerLink]="['/clientPage']">
+                    <i class="bi bi-file-person-fill settings-icons"></i>
+                    <h5 class="blueColor inline">
+                        Cuentas
+                    </h5>
+                </a>    
+            </div>
+            <div class="space">
+                <a [routerLink]="['/clientSettings']">
+                    <i class="bi bi-wallet-fill settings-icons"></i>
+                    <h5 class="blueColor inline">
+                    Transacciones
+                     </h5>
+                </a>       
+            </div>
+            <div class="space">
+                <a [routerLink]="['/clientSettings']">
+                    <i class="bi bi-credit-card-fill settings-icons"></i>
+                    <h5 class="blueColor inline">
+                        Servicios varios 
+                     </h5>
+                </a>
+            </div>
+            <div class="settings-bg rounded">
+                <h4 class="ss blueColor">
+                    Administración de cuenta
+                </h4>
+            </div>
+            
+             
+
+        </div>
+        <div class="col-md-6 border infoBox rounded">
+            <table>
+                <tr>
+                  <th>Beneficiarios</th>
+                  <th>Porcentaje</th>
+                </tr>
+                <tr>
+                  <td>Fabio</td>
+                  <td>60%</td>
+                </tr>
+                <tr>
+                    <td>Ivan</td>
+                    <td>20%</td>
+                </tr>
+                <tr>
+                    <td>Miguelito</td>
+                    <td>20%</td>
+
+                </tr>
+              </table>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="footer-bottom">
+    <app-footer></app-footer>
+</div>

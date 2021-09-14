@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light navbar-default border-bottom sticky-top">
+    <img class="logo-size" src="assets/img/FIBcropped.png">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link blueColor" href="#">Noticias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link blueColor" href="#">Sobre Nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link blueColor" [routerLink]="['/clientPage']">Contáctanos</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <i class="bi bi-search search-icon"></i>
+        <input class="form-control mr-sm-2 search" type="search" placeholder="Buscar" aria-label="Search">
+        <button class="btn my-2 my-sm-0 buttons btn-outline-black" type="submit" [routerLink]="['/login']" >Iniciar Sesión</button>
+        <a class="bi bi-twitter icons"></a>
+        <i class="bi bi-instagram icons insta-logo"></i>
+      </form>
+    </div>
+  </nav>

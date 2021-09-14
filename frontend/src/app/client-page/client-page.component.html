@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="cuentas-bg rounded">
+                <h4 class="ss blueColor">
+                    Cuentas
+                </h4>
+            </div>
+            <div class="space">
+                <a [routerLink]="['/clientPage']">
+                    <i class="bi bi-wallet-fill settings-icons"></i>
+                <h5 class="blueColor inline">
+                    Transacciones
+                 </h5>
+                </a>
+            </div>
+            <div class="space">
+                <a [routerLink]="['/clientPage']">
+                    <i class="bi bi-credit-card-fill settings-icons"></i>
+                <h5 class="blueColor inline">
+                    Servicios varios 
+                 </h5>
+                </a>
+            </div>
+            <div>
+                <a [routerLink]="['/clientSettings']">
+                    <i class="bi bi-gear-fill settings-icons"></i>
+                    <h5 class="blueColor inline">
+                        Administración de cuenta 
+                    </h5>
+                </a>
+                
+                 
+            </div>
+             
+
+        </div>
+        <div class="col-md-6 border infoBox rounded">
+            <table>
+                <tr>
+                  <th>Tipo de cuenta de ahorros</th>
+                  <th>Id</th>
+                  <th>Moneda</th>
+                  <th>Saldo</th>
+                </tr>
+                <tr>
+                  <td>Ahorro</td>
+                  <td>1</td>
+                  <td>₡</td>
+                  <td>1,000.00</td>
+                </tr>
+                <tr>
+                    <td>Ahorro en dólares</td>
+                    <td>2</td>
+                    <td>$</td>
+                    <td>537.00</td>
+                </tr>
+                <tr>
+                    <td>Ahorro en euros</td>
+                    <td>3</td>
+                    <td>€</td>
+                    <td>13.00</td>
+                </tr>
+                <tr>
+                  <td>Ahorro Vacacional</td>
+                    <td>4</td>
+                    <td>₡</td>
+                    <td>234,567.00</td>
+                </tr>
+                <tr>
+                  <td>Interes</td>
+                  <td>5</td>
+                  <td>₡</td>
+                  <td>3,516.00</td>
+                </tr>
+              </table>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="footer-bottom">
+    <app-footer></app-footer>
+</div>

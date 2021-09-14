@@ -1,0 +1,10 @@
+.footer-bottom{
+    width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer-icons{
+  font-size: 25px;
+  color: rgb(0, 20, 37);
+}

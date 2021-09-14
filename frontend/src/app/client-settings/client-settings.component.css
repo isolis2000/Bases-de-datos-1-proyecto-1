@@ -1,0 +1,58 @@
+h4{
+    font-size: 70px;
+}
+h5{
+    font-size: 25px;
+}
+
+.infoBox{
+    margin-top: 50px;
+    border-color: rgb(0, 46, 87) !important;
+    border-width: 2px !important;
+}
+
+.inline{
+    display: inline;
+}
+
+.settings-icons{
+    font-size: 20px;
+    color: rgb(0, 46, 87);
+}
+
+.footer-bottom{
+    width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.settings-bg{
+    margin-bottom: 15px;
+    background-color: rgb(204, 204, 204);
+}
+
+.space{
+    margin-bottom: 30px;
+}
+
+table {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid rgb(197, 197, 197);
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgb(204, 204, 204);
+  }
+
+.pos{
+    margin-top: 6 0px;
+}
