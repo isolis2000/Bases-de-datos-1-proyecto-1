@@ -17,6 +17,11 @@
                         <input type="checkbox" class="form-check-input" id="adminCheck">
                         <label class="form-check-label blueColor" for="adminCheck">Administrador</label>
                       </div>
+                      <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                          <input type="checkbox" checked autocomplete="off" (click)="sendDataWithThis()"> Checkbox 1 (pre-checked)
+                        </label>
+                      </div>
                     </div>
                     
                     <button type="submit" class="btn btn-primary form-button " [routerLink]="['/clientPage']">Ingresar</button>

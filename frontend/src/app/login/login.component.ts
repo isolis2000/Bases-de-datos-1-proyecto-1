@@ -1,5 +1,8 @@
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { CommunicationService } from '../communication/communication.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,7 @@ export class LoginComponent implements OnInit {
   user: string ='';
   password!: string;
 
-  constructor() { }
+  constructor(private CS:CommunicationService) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +25,12 @@ export class LoginComponent implements OnInit {
     //grab values
     const mesagge = 'my name is ' + this.user;
     alert(mesagge)
+  }
+
+  sendDataWithThis(){
+    this.CS.getData().subscribe(res => {
+      alert(res.stringify)
+    })
   }
 
 }
