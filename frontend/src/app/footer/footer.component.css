@@ -8,3 +8,13 @@
   font-size: 25px;
   color: rgb(0, 20, 37);
 }
+
+.footer-logo{
+  width: 180px;
+  height: 80px;
+  margin-left: 30px;
+}
+
+.footer-pos{
+  margin-left: 110px;
+}

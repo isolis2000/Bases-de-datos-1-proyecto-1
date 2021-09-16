@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { ClientSettingsComponent } from './client-settings/client-settings.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     ClientPageComponent,
-    ClientSettingsComponent
+    ClientSettingsComponent,
+    AdminPageComponent
 
   ],
   imports: [

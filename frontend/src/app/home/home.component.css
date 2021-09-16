@@ -1,0 +1,33 @@
+.cards-bg{
+    height: 505px;
+    background-color: white;
+}
+
+.crypto-bg{
+    height: 450px;
+    background-color: rgb(8, 30, 63);
+}
+
+.colSize{
+    height: 450px;
+}
+
+.crypto-logos{
+    margin-top: 150px;
+    height: 120px;
+    width: 120px;
+    padding: 3%;
+}
+
+.text-crypto{
+    font-size: 40px;
+    color: white !important;
+    margin-top: 150px;
+
+  }
+
+.text-cards{
+    font-size: 40px;
+    color: rgb(8, 30, 63) !important;
+    margin-top: 10px;
+}

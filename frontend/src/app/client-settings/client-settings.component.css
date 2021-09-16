@@ -1,5 +1,5 @@
 h4{
-    font-size: 70px;
+    font-size: 50px;
 }
 h5{
     font-size: 25px;
@@ -54,5 +54,15 @@ table {
   }
 
 .pos{
-    margin-top: 6 0px;
+    margin-top: 50px;
 }
+
+.settings-buttons{
+    background-color: rgb(0, 46, 87);
+    border-color: rgb(0, 46, 87);
+    color: white;
+  }
+  .settings-buttons:hover{
+    background-color: white;
+    color: rgb(0, 46, 87);
+  }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { ClientSettingsComponent } from './client-settings/client-settings.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'clientSettings',
     component: ClientSettingsComponent
+  },
+  {
+    path: 'adminPage',
+    component: AdminPageComponent
   }
 ];
 
