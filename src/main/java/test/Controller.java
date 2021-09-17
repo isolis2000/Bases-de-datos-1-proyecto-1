@@ -1,28 +1,30 @@
 package test;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import util.Models;
-import util.POJO;
+import pojo.LoginResult;
 import util.SQLConnections;
 
 import java.sql.Connection;
 
 @RestController
 public class Controller {
-    private SQLConnections sqlConnections = new SQLConnections();
+    private final SQLConnections sqlConnections = new SQLConnections();
 
     @CrossOrigin
     @PostMapping(value = "/api", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public POJO test(POJO pojo) {
-        pojo.setID(3);
+    public ResponseEntity<LoginResult> test(@RequestBody LoginResult loginResult) {
         Models models = new Models();
+        System.out.println("Usuario: " + loginResult.getValorDocumentoIdentidad());
         Connection conn = sqlConnections.establishConnection();
-        String command = "SELECT * FROM TEST_TABLE";
-        sqlConnections.executeCommand(command, conn);
-        return pojo;
+        String command = "SELECT * FROM Usuario WHERE"
+                + " Usuario = '" + loginResult.getUsuario()
+                + "' AND Pass = '" + loginResult.getPass()
+                + "' AND ValorDocumentoIdentidad = " + loginResult.getValorDocumentoIdentidad()
+                + " AND EsAdministrador = " + loginResult.getEsAdministrador();
+        System.out.println(command);
+        return ResponseEntity.ok(sqlConnections.executeCommand(command, conn));
     }
 }

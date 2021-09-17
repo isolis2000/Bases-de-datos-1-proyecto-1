@@ -1,5 +1,5 @@
 util/Models.class
+pojo/LoginResult.class
 test/Controller.class
 util/SQLConnections.class
 test/Application.class
-util/POJO.class

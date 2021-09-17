@@ -1,6 +1,6 @@
 package util;
+import pojo.LoginResult;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 
 public class SQLConnections {
@@ -30,15 +30,22 @@ public class SQLConnections {
         return null;
     }
 
-    public void executeCommand(String sqlStr, Connection conn) {
+    public LoginResult executeCommand(String sqlStr, Connection conn) {
+        LoginResult loginResult = new LoginResult();
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlStr);
             while (rs.next()){
-                System.out.println("ID: " + rs.getInt("Id"));
+                loginResult.setUsuario(rs.getString("Usuario"));
+                loginResult.setPass(rs.getString("Pass"));
+                loginResult.setValorDocumentoIdentidad(rs.getInt("ValorDocumentoIdentidad"));
+                loginResult.setEsAdministrador(rs.getInt("EsAdministrador"));
+                return loginResult;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        loginResult.setValorDocumentoIdentidad(0);
+        return loginResult;
     }
 }
