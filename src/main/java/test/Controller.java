@@ -21,10 +21,10 @@ public class Controller {
     public ResponseEntity<LoginResult> test(@RequestBody LoginResult loginResult) {
         Models models = new Models();
         Connection conn = sqlConnections.establishConnection();
-        String command = "SELECT * FROM Usuario WHERE"
-                + " Usuario = '" + loginResult.getUsuario()
-                + "' AND Pass = '" + loginResult.getPass()
-                + "' AND EsAdministrador = " + loginResult.getEsAdministrador();
+        String command = "EXEC sp_VerifyLogin"
+                + " @Usuario = '" + loginResult.getUsuario()
+                + "', @Pass = '" + loginResult.getPass()
+                + "', @EsAdministrador = " + loginResult.getEsAdministrador();
         System.out.println(command);
         return ResponseEntity.ok(sqlConnections.executeCommand(command, conn));
     }
