@@ -24,8 +24,7 @@ public class Controller {
         String command = "SELECT * FROM Usuario WHERE"
                 + " Usuario = '" + loginResult.getUsuario()
                 + "' AND Pass = '" + loginResult.getPass()
-                + "' AND ValorDocumentoIdentidad = " + loginResult.getValorDocumentoIdentidad()
-                + " AND EsAdministrador = " + loginResult.getEsAdministrador();
+                + "' AND EsAdministrador = " + loginResult.getEsAdministrador();
         System.out.println(command);
         return ResponseEntity.ok(sqlConnections.executeCommand(command, conn));
     }
