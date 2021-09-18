@@ -7,17 +7,19 @@ import util.Models;
 import pojo.LoginResult;
 import util.SQLConnections;
 
+import javax.print.attribute.standard.Media;
 import java.sql.Connection;
 
-@RestController
+@RestController()
+@RequestMapping(path = "/api", consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
 public class Controller {
     private final SQLConnections sqlConnections = new SQLConnections();
 
     @CrossOrigin
-    @PostMapping(value = "/api", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/login")
     public ResponseEntity<LoginResult> test(@RequestBody LoginResult loginResult) {
         Models models = new Models();
-        System.out.println("Usuario: " + loginResult.getValorDocumentoIdentidad());
         Connection conn = sqlConnections.establishConnection();
         String command = "SELECT * FROM Usuario WHERE"
                 + " Usuario = '" + loginResult.getUsuario()
