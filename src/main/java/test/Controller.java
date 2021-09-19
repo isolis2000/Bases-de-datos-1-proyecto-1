@@ -11,6 +11,7 @@ import pojo.LoginResult;
 import util.SQLConnections;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
@@ -34,7 +35,7 @@ public class Controller {
 
     @CrossOrigin
     @PostMapping(value = "/accountsTable")
-    public ResponseEntity<List<AccountsTableResponse>> accountsTableRequest(@RequestBody AccountsTableRequest accountsTableRequest){
+    public ResponseEntity<ArrayList<AccountsTableResponse>> accountsTableRequest(@RequestBody AccountsTableRequest accountsTableRequest){
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_AccountsTableClient " +
                 "@Usuario = '" + accountsTableRequest.getUsuario() + "'";
