@@ -3,6 +3,8 @@ package test;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pojo.AccountsTableRequest;
+import pojo.AccountsTableResponse;
 import util.Models;
 import pojo.LoginResult;
 import util.SQLConnections;
@@ -18,7 +20,7 @@ public class Controller {
 
     @CrossOrigin
     @PostMapping(value = "/login")
-    public ResponseEntity<LoginResult> test(@RequestBody LoginResult loginResult) {
+    public ResponseEntity<LoginResult> loginRequest(@RequestBody LoginResult loginResult) {
         Models models = new Models();
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_VerifyLogin"
@@ -26,6 +28,16 @@ public class Controller {
                 + "', @Pass = '" + loginResult.getPass()
                 + "', @EsAdministrador = " + loginResult.getEsAdministrador();
         System.out.println(command);
-        return ResponseEntity.ok(sqlConnections.executeCommand(command, conn));
+        return ResponseEntity.ok(sqlConnections.loginCommand(command, conn));
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/accountsTable")
+    public ResponseEntity<AccountsTableResponse> accountsTableRequest(@RequestBody AccountsTableRequest accountsTableRequest){
+        Connection conn = sqlConnections.establishConnection();
+        String command = "EXEC sp_AccountsTableClient " +
+                "@Usuario = '" + accountsTableRequest.getUsuario() + "'";
+        System.out.println(command);
+        return ResponseEntity.ok(sqlConnections.accountsCommand(command, conn));
     }
 }

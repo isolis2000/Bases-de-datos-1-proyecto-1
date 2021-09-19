@@ -1,4 +1,5 @@
 package util;
+import pojo.AccountsTableResponse;
 import pojo.LoginResult;
 
 import java.sql.*;
@@ -30,7 +31,7 @@ public class SQLConnections {
         return null;
     }
 
-    public LoginResult executeCommand(String sqlStr, Connection conn) {
+    public LoginResult loginCommand(String sqlStr, Connection conn) {
         LoginResult loginResult = new LoginResult();
         try {
             Statement stmt = conn.createStatement();
@@ -45,7 +46,24 @@ public class SQLConnections {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        loginResult.setValorDocumentoIdentidad(0);
         return loginResult;
+    }
+
+    public AccountsTableResponse accountsCommand(String sqlStr, Connection conn) {
+        AccountsTableResponse accountsTableResponse = new AccountsTableResponse();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlStr);
+            while (rs.next()){
+                accountsTableResponse.setMoneda(rs.getString("Moneda"));
+                accountsTableResponse.setTipoCuenta(rs.getString("TipoCuenta"));
+                accountsTableResponse.setNumCuenta(rs.getInt("NumeroCuenta"));
+                accountsTableResponse.setSaldo(rs.getInt("Saldo"));
+                return accountsTableResponse;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return accountsTableResponse;
     }
 }
