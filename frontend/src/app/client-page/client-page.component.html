@@ -38,48 +38,38 @@
         <div class="col-md-6 border infoBox rounded">
             <table>
                 <tr>
-                  <th>Tipo de cuenta de ahorros</th>
-                  <th>Id</th>
-                  <th>Moneda</th>
-                  <th>Saldo</th>
+                  <th *ngFor = "let column of headers">
+                      {{column}}
+                  </th>
                 </tr>
-                <tr>
-                  <td>Ahorro</td>
-                  <td>1</td>
-                  <td>₡</td>
-                  <td>1,000.00</td>
+            
+                <tr *ngFor = "let row of Rows">
+                    <td >
+                      {{row.numCuenta}}
+                    </td>
+                    <td>
+                        {{row.tipoCuenta}}
+                    </td>
+                    <td>
+                        {{row.Moneda}}
+                    </td>
+                    <td>
+                        {{row.Saldo}}
+                    </td>
                 </tr>
-                <tr>
-                    <td>Ahorro en dólares</td>
-                    <td>2</td>
-                    <td>$</td>
-                    <td>537.00</td>
-                </tr>
-                <tr>
-                    <td>Ahorro en euros</td>
-                    <td>3</td>
-                    <td>€</td>
-                    <td>13.00</td>
-                </tr>
-                <tr>
-                  <td>Ahorro Vacacional</td>
-                    <td>4</td>
-                    <td>₡</td>
-                    <td>234,567.00</td>
-                </tr>
-                <tr>
-                  <td>Interes</td>
-                  <td>5</td>
-                  <td>₡</td>
-                  <td>3,516.00</td>
-                </tr>
-              </table>
+            
+            </table>
+
+              
 
         </div>
 
     </div>
 
 </div>
+
+
+
 <div class="footer-bottom">
     <app-footer></app-footer>
 </div>

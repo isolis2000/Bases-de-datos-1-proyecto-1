@@ -12,7 +12,16 @@ import { catchError, retry } from 'rxjs/operators';
 export class CommunicationService {
   constructor(private http: HttpClient) {}
 
-  public getData(){
+  public postData(){
       return this.http.post<JSON>("http://localhost:8080/api/", {"Id":2})
   }
+
+  public verifyLoginClient(usuario:string, pass:string, esAdministrador : number){
+    return this.http.post<JSON>("http://localhost:8080/api/login", ({"usuario": usuario, "pass": pass, "esAdministrador": esAdministrador}))
+  }
+
+  public loadAccountsTable(usuario:any){
+    return this.http.post<JSON>("http://localhost:8080/api/accountsTable", ({"usuario": usuario}))
+  }
 }
+

@@ -1,17 +1,18 @@
+
 <body>
     <div class="">
 
                 <img class="bg"src="assets/img/blueBgFixed.jpg">
-                <form class="forms rounded">
+                <form [formGroup]="myForm" class="forms rounded" (ngSubmit)="onSubmit()">
                     <h5 class="d-flex justify-content-center blueColor">Fabio and Ivan's Bank</h5>
                     <div class="form-group">
                         <i class="bi bi-person-fill d-flex justify-content-center form-icons"></i>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario">
+                      <input type="username" #username id="username" required class="form-control" formControlName="username" placeholder="Usuario" >
                       
                     </div>
                     <div class="form-group">
                         <i class="bi bi-key-fill d-flex justify-content-center form-icons"></i>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                      <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
                       <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tu contraseña con nadie.</small>
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="adminCheck">
@@ -22,10 +23,15 @@
                           <input type="checkbox" checked autocomplete="off" (click)="sendDataWithThis()"> Checkbox 1 (pre-checked)
                         </label>
                       </div>
+                      <button type="submit">Guardar en LocalStorage</button>
+                      
                     </div>
+                    
                     
                     <button type="submit" class="btn btn-primary form-button " [routerLink]="['/clientPage']">Ingresar</button>
                   </form>
+                  <button (click)="validateForm(username.value,'LaFacil',0)"  >Validar Ingreso</button>
+                  <button (click)="removeAll()">Borrar LocalStorage</button>
 
         
     </div>
