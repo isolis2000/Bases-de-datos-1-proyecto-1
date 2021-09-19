@@ -4,6 +4,7 @@ import pojo.AccountsTableResponseList;
 import pojo.LoginResult;
 
 import java.sql.*;
+import java.util.List;
 
 public class SQLConnections {
     private String dbURL;
@@ -50,7 +51,7 @@ public class SQLConnections {
         return loginResult;
     }
 
-    public AccountsTableResponseList accountsCommand(String sqlStr, Connection conn) {
+    public List<AccountsTableResponse> accountsCommand(String sqlStr, Connection conn) {
         AccountsTableResponseList actr = new AccountsTableResponseList();
         try {
             Statement stmt = conn.createStatement();
@@ -62,10 +63,11 @@ public class SQLConnections {
                 accountsTableResponse.setNumCuenta(rs.getInt("NumeroCuenta"));
                 accountsTableResponse.setSaldo(rs.getInt("Saldo"));
                 actr.addToAccountsTableResponses(accountsTableResponse);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return actr;
+        return actr.getAccountsTableResponses();
     }
 }

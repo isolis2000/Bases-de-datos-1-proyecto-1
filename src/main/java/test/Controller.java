@@ -4,12 +4,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pojo.AccountsTableRequest;
+import pojo.AccountsTableResponse;
 import pojo.AccountsTableResponseList;
 import util.Models;
 import pojo.LoginResult;
 import util.SQLConnections;
 
 import java.sql.Connection;
+import java.util.List;
 
 @RestController()
 @RequestMapping(path = "/api", consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -32,7 +34,7 @@ public class Controller {
 
     @CrossOrigin
     @PostMapping(value = "/accountsTable")
-    public ResponseEntity<AccountsTableResponseList> accountsTableRequest(@RequestBody AccountsTableRequest accountsTableRequest){
+    public ResponseEntity<List<AccountsTableResponse>> accountsTableRequest(@RequestBody AccountsTableRequest accountsTableRequest){
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_AccountsTableClient " +
                 "@Usuario = '" + accountsTableRequest.getUsuario() + "'";
