@@ -1,5 +1,6 @@
 package util;
 import pojo.AccountsTableResponse;
+import pojo.AccountsTableResponseList;
 import pojo.LoginResult;
 
 import java.sql.*;
@@ -49,21 +50,22 @@ public class SQLConnections {
         return loginResult;
     }
 
-    public AccountsTableResponse accountsCommand(String sqlStr, Connection conn) {
-        AccountsTableResponse accountsTableResponse = new AccountsTableResponse();
+    public AccountsTableResponseList accountsCommand(String sqlStr, Connection conn) {
+        AccountsTableResponseList actr = new AccountsTableResponseList();
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlStr);
             while (rs.next()){
+                AccountsTableResponse accountsTableResponse = new AccountsTableResponse();
                 accountsTableResponse.setMoneda(rs.getString("Moneda"));
                 accountsTableResponse.setTipoCuenta(rs.getString("TipoCuenta"));
                 accountsTableResponse.setNumCuenta(rs.getInt("NumeroCuenta"));
                 accountsTableResponse.setSaldo(rs.getInt("Saldo"));
-                return accountsTableResponse;
+                actr.addToAccountsTableResponses(accountsTableResponse);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return accountsTableResponse;
+        return actr;
     }
 }
