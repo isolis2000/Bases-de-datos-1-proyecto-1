@@ -1,11 +1,11 @@
 package util;
+import pojo.AccountList;
 import pojo.AccountsTableResponse;
 import pojo.AccountsTableResponseList;
-import pojo.LoginResult;
+import pojo.Account;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SQLConnections {
     private String dbURL;
@@ -34,25 +34,25 @@ public class SQLConnections {
         return null;
     }
 
-    public LoginResult loginCommand(String sqlStr, Connection conn) {
-        LoginResult loginResult = new LoginResult();
+    public Account verifyLogin(String sqlStr, Connection conn) {
+        Account account = new Account();
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sqlStr);
             while (rs.next()){
-                loginResult.setUsuario(rs.getString("Usuario"));
-                loginResult.setPass(rs.getString("Pass"));
-                loginResult.setValorDocumentoIdentidad(rs.getInt("ValorDocumentoIdentidad"));
-                loginResult.setEsAdministrador(rs.getInt("EsAdministrador"));
-                return loginResult;
+                account.setUsuario(rs.getString("Usuario"));
+                account.setPass(rs.getString("Pass"));
+                account.setValorDocumentoIdentidad(rs.getInt("ValorDocumentoIdentidad"));
+                account.setEsAdministrador(rs.getInt("EsAdministrador"));
+                return account;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return loginResult;
+        return account;
     }
 
-    public ArrayList<AccountsTableResponse> accountsCommand(String sqlStr, Connection conn) {
+    public ArrayList<AccountsTableResponse> getAccounts(String sqlStr, Connection conn) {
         AccountsTableResponseList actr = new AccountsTableResponseList();
         try {
             Statement stmt = conn.createStatement();
@@ -70,4 +70,23 @@ public class SQLConnections {
         }
         return actr.getAccountsTableResponses();
     }
+
+//    public ArrayList<Account> getAdminAccounts(String sqlStr, Connection conn) {
+//        AccountList accountList = new AccountList();
+//        try {
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery(sqlStr);
+//            while (rs.next()){
+//                Account account = new Account();
+//                account.setMoneda(rs.getString("Moneda"));
+//                account.setTipoCuenta(rs.getString("TipoCuenta"));
+//                account.setNumCuenta(rs.getInt("NumeroCuenta"));
+//                account.setSaldo(rs.getInt("Saldo"));
+//                accountList.addToAccounts(account);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return accountList.getAccounts();
+//    }
 }

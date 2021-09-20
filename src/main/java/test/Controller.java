@@ -5,41 +5,46 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pojo.AccountsTableRequest;
 import pojo.AccountsTableResponse;
-import pojo.AccountsTableResponseList;
-import util.Models;
-import pojo.LoginResult;
+import pojo.Account;
 import util.SQLConnections;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController()
-@RequestMapping(path = "/api", consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api")
 public class Controller {
     private final SQLConnections sqlConnections = new SQLConnections();
 
     @CrossOrigin
-    @PostMapping(value = "/login")
-    public ResponseEntity<LoginResult> loginRequest(@RequestBody LoginResult loginResult) {
-        Models models = new Models();
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Account> loginRequest(@RequestBody Account account) {
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_VerifyLogin"
-                + " @Usuario = '" + loginResult.getUsuario()
-                + "', @Pass = '" + loginResult.getPass()
-                + "', @EsAdministrador = " + loginResult.getEsAdministrador();
+                + " @Usuario = '" + account.getUsuario()
+                + "', @Pass = '" + account.getPass()
+                + "', @EsAdministrador = " + account.getEsAdministrador();
         System.out.println(command);
-        return ResponseEntity.ok(sqlConnections.loginCommand(command, conn));
+        return ResponseEntity.ok(sqlConnections.verifyLogin(command, conn));
     }
 
     @CrossOrigin
-    @PostMapping(value = "/accountsTable")
+    @PostMapping(value = "/accountsTable", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ArrayList<AccountsTableResponse>> accountsTableRequest(@RequestBody AccountsTableRequest accountsTableRequest){
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_AccountsTableClient " +
                 "@Usuario = '" + accountsTableRequest.getUsuario() + "'";
         System.out.println(command);
-        return ResponseEntity.ok(sqlConnections.accountsCommand(command, conn));
+        return ResponseEntity.ok(sqlConnections.getAccounts(command, conn));
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/adminAccountsTable")
+    public ResponseEntity<ArrayList<AccountsTableResponse>> adminAccountsTableRequest() {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "EXEC sp_AccountsTableAdmin";
+        return ResponseEntity.ok(sqlConnections.getAccounts(command, conn));
     }
 }

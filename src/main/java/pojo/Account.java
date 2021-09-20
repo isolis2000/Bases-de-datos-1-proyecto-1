@@ -1,13 +1,13 @@
 package pojo;
 
-public class LoginResult {
+public class Account {
     private String usuario, pass;
     private int valorDocumentoIdentidad, esAdministrador;
 
-    public LoginResult() {
+    public Account() {
     }
 
-    public LoginResult(String usuario, String pass, int valorDocumentoIdentidad, int esAdministrador) {
+    public Account(String usuario, String pass, int valorDocumentoIdentidad, int esAdministrador) {
         this.usuario = usuario;
         this.pass = pass;
         this.valorDocumentoIdentidad = valorDocumentoIdentidad;
