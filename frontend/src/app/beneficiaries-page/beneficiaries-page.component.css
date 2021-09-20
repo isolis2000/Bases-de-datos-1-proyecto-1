@@ -1,46 +1,26 @@
 h4{
-    font-size: 50px;
+    margin-top: 0px;
+    font-size: 40px;
     margin-left: 20px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-h5{
-    font-size: 25px;
-}
-
 .infoBox{
-    margin-top: 50px;
+    margin-top: 80px;
     border-color: rgb(0, 46, 87) !important;
     border-width: 2px !important;
 }
-
-.inline{
-    display: inline;
-}
-
-.settings-icons{
-    font-size: 20px;
-    color: rgb(0, 46, 87);
-    margin-left: 20px;
-}
-
 .footer-bottom{
     width: 100%;
   position: absolute;
   bottom: 0;
-}
 
-.cuentas-bg{
-    margin-top: 50px;
-    margin-bottom: 15px;
-    background-color: rgb(204, 204, 204);
-}
-
-.space{
-    margin-bottom: 30px;
 }
 
 table {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px;
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -55,22 +35,15 @@ table {
   tr:nth-child(even) {
     background-color: rgb(204, 204, 204);
   }
+
   .settings-buttons{
     background-color: rgb(0, 46, 87);
     border-color: rgb(0, 46, 87);
     color: white;
     margin: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   .settings-buttons:hover{
     background-color: white;
     color: rgb(0, 46, 87);
-  }
-
-  .inputs{
-    margin: 5px;
-  }
-  
-  .ben-inputs{
-    margin: 5px;
   }

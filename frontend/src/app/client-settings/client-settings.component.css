@@ -61,8 +61,30 @@ table {
     background-color: rgb(0, 46, 87);
     border-color: rgb(0, 46, 87);
     color: white;
+    margin: 5px;
+    margin-bottom: 20px !important;
   }
   .settings-buttons:hover{
     background-color: white;
     color: rgb(0, 46, 87);
   }
+
+  .parButton{
+    background-color: white;
+    border-color: rgb(197, 197, 197);
+    color: black;
+    margin: 5px;
+    margin-bottom: 20px !important;
+  }
+  .parButton:hover{
+    background-color: rgb(197, 197, 197);
+    color: black;
+  }
+
+.inputs{
+  margin: 5px;
+}
+
+.ben-inputs{
+  margin: 5px;
+}

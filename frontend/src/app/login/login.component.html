@@ -1,4 +1,4 @@
-
+<app-header></app-header>
 <body>
     <div class="">
 
@@ -12,26 +12,26 @@
                     </div>
                     <div class="form-group">
                         <i class="bi bi-key-fill d-flex justify-content-center form-icons"></i>
-                      <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+                      <input type="password"#password id="password" required class="form-control" formControlName="password" placeholder="Contraseña">
                       <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tu contraseña con nadie.</small>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="adminCheck">
-                        <label class="form-check-label blueColor" for="adminCheck">Administrador</label>
-                      </div>
-                      <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                          <input type="checkbox" checked autocomplete="off" (click)="sendDataWithThis()"> Checkbox 1 (pre-checked)
-                        </label>
-                      </div>
-                      <button type="submit">Guardar en LocalStorage</button>
+
+                      
+                      
+
                       
                     </div>
+                    <div class="form-check checkBox">
+                      <input type="checkbox" class="form-check-input" id="adminCheck" (click)="esAdministrador(1)">
+                      <label class="form-check-label blueColor" for="adminCheck">Administrador</label>
+                      
+                    </div>
+                    <div class="form-check checkBox">
+                      <input type="checkbox" class="form-check-input" id="adminCheckk" (click)="esAdministrador(0)">
+                      <label class="form-check-label blueColor" for="adminCheckk">Cliente</label>
+                    </div>
                     
-                    
-                    <button type="submit" class="btn btn-primary form-button " [routerLink]="['/clientPage']">Ingresar</button>
+                    <button type="submit" class="btn btn-primary form-button " (click)="validateForm(username.value,password.value)">Ingresar</button>
                   </form>
-                  <button (click)="validateForm(username.value,'LaFacil',0)"  >Validar Ingreso</button>
-                  <button (click)="removeAll()">Borrar LocalStorage</button>
 
         
     </div>

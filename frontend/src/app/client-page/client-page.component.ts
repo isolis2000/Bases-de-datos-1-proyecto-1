@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommunicationService } from '../communication/communication.service';
 
 
@@ -27,40 +28,31 @@ export class ClientPageComponent implements OnInit {
 
   
 
-  constructor(private CS:CommunicationService) { }
+  constructor(private CS:CommunicationService, private router: Router) { }
    headers:any = ["numCuenta", "tipoCuenta", "Moneda", "Saldo"]
+   Rows = JSON.parse(localStorage.getItem("tableData")?.toString() || '{}')
+   
+   
 
-  Rows = [
-  {
-    "numCuenta": 111,
-    "tipoCuenta": "Ahorro",
-    "Moneda": "$",
-    "Saldo": 1000.00
-  },
-  {
-    "numCuenta": 222,
-    "tipoCuenta": "Pago",
-    "Moneda": "$$$",
-    "Saldo": 2000.00
-  },
-  {
-    "numCuenta": 333,
-    "tipoCuenta": "Pago",
-    "Moneda": "euros",
-    "Saldo": 3000.00
-  }
-]
   
-
+  
+  
   ngOnInit(): void {
-    this.CS.loadAccountsTable(localStorage.getItem("Name")).subscribe(res => {
-      const result: Result = JSON.parse(JSON.stringify(res))
-      localStorage.setItem("tableData", result.tableData)
-      alert(JSON.stringify(res))
+  }
+
+  refresh(): void {
+    window.location.reload();
+  }
+
+  goToBen(numCuenta:any){
+    this.CS.loadBeneficiariesTableApart(Number(numCuenta)).subscribe(res =>{
+      localStorage.setItem("benXAccount", JSON.stringify(res))
+      this.router.navigate(['/beneficiariesPage'])
     })
-    
   }
+
   }
+  
   
 
 

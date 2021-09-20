@@ -26,6 +26,7 @@ interface Result {
 
 export class LoginComponent implements OnInit {
   myForm!: any;
+  numeroAdmin: number | undefined;
 
   constructor(private CS:CommunicationService, private router: Router) { }
 
@@ -57,7 +58,12 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
   }
 
-  validateForm(username: string, password: string, esAdministrador: number){
+  esAdministrador(validacion:number){
+    this.numeroAdmin = validacion;
+  }
+
+  validateForm(username: string, password: string){
+    var esAdministrador = this.numeroAdmin;
     localStorage.setItem('current_username', username);
     localStorage.setItem('current_password', password);
     if(esAdministrador == 0){
@@ -67,25 +73,64 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("Name", result.usuario );
           localStorage.setItem("Password", result.pass );
           localStorage.setItem("Admin", result.esAdministrador.toString() );
-
-          //localStorage.setItem("AccountNumber", JSON.parse(result.NumeroCuenta) );
-          //localStorage.setItem("IdDoc", JSON.parse(result.TipoDocuIdentidad) );
-          //localStorage.setItem("Currency", JSON.parse(result.IdTipoMoneda) );
-          //localStorage.setItem("IdDoc", JSON.parse(result.TipoDocuIdentidad) );
+          this.CS.loadAccountsTable(localStorage.getItem("Name")).subscribe(res => {
+            localStorage.setItem("tableData", JSON.stringify(res))
+            window.location.reload();
+      
+          })
+          this.CS.loadBeneficiariesTable(localStorage.getItem("Name")).subscribe(res =>{
+            localStorage.setItem("beneficiariesData", JSON.stringify(res))
+            window.location.reload();
+          })
           if(result.usuario == null){
-            alert("Usuario no existe")
+            this.removeAll()
+            alert("Usuario o contraseña incorrectos")
             
           }else{
             this.router.navigate(['/clientPage'])
+            
           }
           
         }
         else{
+          this.removeAll()
           alert("Por favor llenar ambos datos")
         }
         }, error => {
           alert("no existe")
         });
+      }
+      if (esAdministrador == 1) {
+        
+        this.CS.verifyLoginClient(username,password, esAdministrador).subscribe(res  => {
+          const result: Result = JSON.parse(JSON.stringify(res))
+          alert(JSON.stringify(res))
+          if(esAdministrador == 1 && username!='' && password != '' ){
+            localStorage.setItem("Name", result.usuario );
+            this.CS.loadAdminTable().subscribe(res => {
+              
+              localStorage.setItem("tableData", JSON.stringify(res))
+              window.location.reload();
+        
+            })
+            if(result.usuario == null){
+              this.removeAll()
+              alert("Usuario o contraseña incorrectos")
+              
+            }else{
+              this.router.navigate(['/adminPage'])
+              
+            }
+            
+          }
+          else{
+            this.removeAll()
+            alert("Por favor llenar ambos datos")
+          }
+          }, error => {
+            alert("no existe")
+          });
+
       }
     }
 

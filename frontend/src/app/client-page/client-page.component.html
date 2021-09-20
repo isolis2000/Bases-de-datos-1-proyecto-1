@@ -1,3 +1,4 @@
+<app-secondheader></app-secondheader>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -45,20 +46,26 @@
             
                 <tr *ngFor = "let row of Rows">
                     <td >
-                      {{row.numCuenta}}
+                      {{ row.numCuenta }}
                     </td>
                     <td>
                         {{row.tipoCuenta}}
                     </td>
                     <td>
-                        {{row.Moneda}}
+                        {{row.moneda}}
                     </td>
                     <td>
-                        {{row.Saldo}}
+                        {{row.saldo}}
                     </td>
                 </tr>
             
             </table>
+            <div class="d-flex justify-content-center">
+                
+                <input class="form-control ben-inputs " #benInfo id="benInfo" placeholder="Digite una cuenta para ver sus beneficiarios">
+                  
+                <button type="submit"  class="btn btn-primary settings-buttons" (click)="goToBen(benInfo.value)" >Buscar</button>
+            </div>
 
               
 

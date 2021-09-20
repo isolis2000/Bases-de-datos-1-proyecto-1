@@ -1,3 +1,4 @@
+<app-secondheader></app-secondheader>
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -11,41 +12,34 @@
         <div class="col-md-9 border infoBox rounded">
             <table>
                 <tr>
-                    <th>Nombre Cliente</th>
-                  <th>Tipo de cuenta de ahorros</th>
-                  <th>Id</th>
-                  <th>Moneda</th>
-                  <th>Saldo</th>
+                  <th *ngFor = "let column of headers">
+                      {{column}}
+                  </th>
                 </tr>
-                <tr>
-                    <td>Fabio</td>
-                  <td>Ahorro</td>
-                  <td>3</td>
-                  <td>₡</td>
-                  <td>1,000.00</td>
+            
+                <tr *ngFor = "let row of Rows">
+                    <td >
+                      {{ row.numCuenta }}
+                    </td>
+                    <td>
+                        {{row.tipoCuenta}}
+                    </td>
+                    <td>
+                        {{row.moneda}}
+                    </td>
+                    <td>
+                        {{row.saldo}}
+                    </td>
                 </tr>
-                <tr>
-                    <td>Ivan</td>
-                    <td>Ahorro en dólares</td>
-                    <td>1</td>
-                    <td>$</td>
-                    <td>537.00</td>
-                </tr>
-                <tr>
-                    <td>Miguelito</td>
-                    <td>Ahorro en euros</td>
-                    <td>2</td>
-                    <td>€</td>
-                    <td>13.00</td>
-                </tr>
-              </table>
+            
+            </table>
 
         </div>
 
     </div>
 
 </div>
-<div class="footer-bottom">
+
     <app-footer></app-footer>
-</div>
+
 

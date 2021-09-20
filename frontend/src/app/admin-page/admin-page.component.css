@@ -8,6 +8,7 @@ h5{
 
 .infoBox{
     margin-top: 50px;
+    margin-bottom: 50px;
     border-color: rgb(0, 46, 87) !important;
     border-width: 2px !important;
 }

@@ -14,6 +14,8 @@ import { ClientSettingsComponent } from './client-settings/client-settings.compo
 import { HttpClientModule } from '@angular/common/http';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CommonModule } from "@angular/common";
+import { SecondheaderComponent } from './secondheader/secondheader.component';
+import { BeneficiariesPageComponent } from './beneficiaries-page/beneficiaries-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { CommonModule } from "@angular/common";
     LoginComponent,
     ClientPageComponent,
     ClientSettingsComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    SecondheaderComponent,
+    BeneficiariesPageComponent
 
   ],
   imports: [

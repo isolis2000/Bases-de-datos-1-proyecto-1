@@ -1,0 +1,49 @@
+<app-secondheader></app-secondheader>
+<div class="container ">
+    <div class="row ">
+        <h4 class="blueColor d-flex justify-content-center">Beneficiarios</h4>
+        <div class="col-md-12 infoBox rounded border justify-content-center ">
+
+                <table>
+                    <tr>
+                      <th *ngFor = "let column of headers">
+                          {{column}}
+                      </th>
+                    </tr>
+                
+                    <tr *ngFor = "let row of Rows">
+                        <td >
+                          {{ row.nombre }}
+                        </td>
+                        <td>
+                            {{row.parentezco}}
+                        </td>
+                        <td>
+                            {{row.porcentaje}}
+                        </td>
+                    </tr>
+                
+                </table>
+                <div class="d-flex justify-content-center">
+                    <button class="btn settings-buttons" type="submit" [routerLink]="['/clientPage']" >Volver</button>
+                </div>
+                
+            
+            
+            <div>
+                
+            </div>
+        </div>
+
+              
+
+
+
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    <app-footer></app-footer>
+</div>
+
