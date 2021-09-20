@@ -19,7 +19,7 @@ public class Controller {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Account> loginRequest(@RequestBody Account account) {
         Connection conn = sqlConnections.establishConnection();
-        String command = "EXEC sp_VerifyLogin"
+        String command = "EXEC sp_VerificarLogin"
                 + " @Usuario = '" + account.getUsuario()
                 + "', @Pass = '" + account.getPass()
                 + "', @EsAdministrador = " + account.getEsAdministrador();
@@ -31,7 +31,7 @@ public class Controller {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ArrayList<AccountsTableResponse>> accountsTableRequest(@RequestBody AccountsTableRequest accountsTableRequest){
         Connection conn = sqlConnections.establishConnection();
-        String command = "EXEC sp_AccountsTableClient " +
+        String command = "EXEC sp_TablaCuentas " +
                 "@Usuario = '" + accountsTableRequest.getUsuario() + "'";
         return ResponseEntity.ok(sqlConnections.getAccounts(command, conn));
     }
@@ -40,7 +40,7 @@ public class Controller {
     @GetMapping(value = "/adminAccountsTable")
     public ResponseEntity<ArrayList<AccountsTableResponse>> adminAccountsTableRequest() {
         Connection conn = sqlConnections.establishConnection();
-        String command = "EXEC sp_AccountsTableAdmin";
+        String command = "EXEC sp_TablaCuentasAdmin";
         return ResponseEntity.ok(sqlConnections.getAccounts(command, conn));
     }
 
