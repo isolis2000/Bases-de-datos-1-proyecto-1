@@ -86,4 +86,13 @@ public class SQLConnections {
         }
         return bl.getBeneficiaries();
     }
+
+    public void postQuery(String sqlStr, Connection conn){
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeQuery(sqlStr);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

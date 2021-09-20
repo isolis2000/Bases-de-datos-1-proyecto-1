@@ -1,8 +1,10 @@
 package test;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 import pojo.*;
 import util.SQLConnections;
 
@@ -64,5 +66,44 @@ public class Controller {
         String command = "EXEC sp_BeneficiariosPorCuenta " +
                 "@Cuenta = " + bpar.getNumeroCuenta();
         return ResponseEntity.ok(sqlConnections.getBeneficiaries(command, conn));
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/addBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addBeneficiary(@RequestBody BeneficiaryModifiable bM) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "EXEC sp_InsertarBeneficiario " +
+                "@NumeroCuenta = " + bM.getNumeroCuenta() +
+                ", @ValorDocumentoIdentidadBeneficiario = " + bM.getValorDocumentoIdentidadBeneficiario() +
+                ", @ParentezcoId = " + bM.getParentezcoId() +
+                ", @Porcentaje = " + bM.getPorcentaje();
+        sqlConnections.postQuery(command, conn);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/modifyBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void modifyBeneficiary(@RequestBody BeneficiaryModifiable bM) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "EXEC sp_ModificarBeneficiario " +
+                "@NumeroCuenta = " + bM.getNumeroCuenta() +
+                ", @ValorDocumentoIdentidadBeneficiario = " + bM.getValorDocumentoIdentidadBeneficiario() +
+                ", @ParentezcoId = " + bM.getParentezcoId() +
+                ", @Porcentaje = " + bM.getPorcentaje();
+        sqlConnections.postQuery(command, conn);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/removeBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void adminAccountsTableRequest(@RequestBody BeneficiaryModifiable bM) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "EXEC sp_EliminarBeneficiario " +
+                "@NumeroCuenta = " + bM.getNumeroCuenta() +
+                ", @ValorDocumentoIdentidadBeneficiario = " + bM.getValorDocumentoIdentidadBeneficiario() +
+                ", @ParentezcoId = " + bM.getParentezcoId() +
+                ", @Porcentaje = " + bM.getPorcentaje();
+        sqlConnections.postQuery(command, conn);
     }
 }
