@@ -1,7 +1,5 @@
 package util;
-import pojo.AccountsTableResponse;
-import pojo.AccountsTableResponseList;
-import pojo.Account;
+import pojo.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -70,22 +68,22 @@ public class SQLConnections {
         return actr.getAccountsTableResponses();
     }
 
-//    public ArrayList<Account> getAdminAccounts(String sqlStr, Connection conn) {
-//        AccountList accountList = new AccountList();
-//        try {
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery(sqlStr);
-//            while (rs.next()){
-//                Account account = new Account();
-//                account.setMoneda(rs.getString("Moneda"));
-//                account.setTipoCuenta(rs.getString("TipoCuenta"));
-//                account.setNumCuenta(rs.getInt("NumeroCuenta"));
-//                account.setSaldo(rs.getInt("Saldo"));
-//                accountList.addToAccounts(account);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return accountList.getAccounts();
-//    }
+    public ArrayList<Beneficiary> getBeneficiaries(String sqlStr, Connection conn) {
+        BeneficiaryList bl = new BeneficiaryList();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlStr);
+            while (rs.next()){
+                Beneficiary beneficiary = new Beneficiary();
+                beneficiary.setCuentaAsociada(rs.getInt("CuentaAsociada"));
+                beneficiary.setNombre(rs.getString("Nombre"));
+                beneficiary.setParentezco(rs.getString("Parentezco"));
+                beneficiary.setPorcentaje(rs.getInt("Porcentaje"));
+                bl.addToBeneficiaries(beneficiary);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bl.getBeneficiaries();
+    }
 }

@@ -3,9 +3,7 @@ package test;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pojo.AccountsTableRequest;
-import pojo.AccountsTableResponse;
-import pojo.Account;
+import pojo.*;
 import util.SQLConnections;
 
 import java.sql.Connection;
@@ -46,5 +44,15 @@ public class Controller {
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_AccountsTableAdmin";
         return ResponseEntity.ok(sqlConnections.getAccounts(command, conn));
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/beneficiaries", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<Beneficiary>> adminAccountsTableRequest(@RequestBody BeneficiaryRequest beneficiaryRequest) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "Exec sp_Beneficiarios " +
+                "@Usuario = '" + beneficiaryRequest.getUsuario() + "'";
+        return ResponseEntity.ok(sqlConnections.getBeneficiaries(command, conn));
     }
 }
