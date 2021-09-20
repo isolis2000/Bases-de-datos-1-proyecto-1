@@ -22,7 +22,6 @@ public class SQLConnections {
                     "user=sa;password=Admin123";
             Connection conn = DriverManager.getConnection(dbURL);
             if (conn != null){
-                System.out.println("Connected");
                 return conn;
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -41,7 +40,6 @@ public class SQLConnections {
                 account.setPass(rs.getString("Pass"));
                 account.setValorDocumentoIdentidad(rs.getInt("ValorDocumentoIdentidad"));
                 account.setEsAdministrador(rs.getInt("EsAdministrador"));
-                return account;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,6 +83,34 @@ public class SQLConnections {
             e.printStackTrace();
         }
         return bl.getBeneficiaries();
+    }
+
+    public Percentage getPercentage(String sqlStr, Connection conn){
+        Percentage percentage = new Percentage();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlStr);
+            while (rs.next()) {
+                percentage.setPorcentaje(rs.getInt("PorcentajeTotal"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return percentage;
+    }
+
+    public NumberOfBeneficiaries getNumberOfBeneficiaries(String sqlStr, Connection conn){
+        NumberOfBeneficiaries numberOfBeneficiaries = new NumberOfBeneficiaries();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlStr);
+            while (rs.next()) {
+                numberOfBeneficiaries.setCantidadDeBeneficiarios(rs.getInt("NumeroDeBeneficiarios"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return numberOfBeneficiaries;
     }
 
     public void postQuery(String sqlStr, Connection conn){

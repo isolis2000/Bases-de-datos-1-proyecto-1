@@ -1,6 +1,6 @@
 package pojo;
 
-public class BeneficiariesPerAccountRequest {
+public class AccountRequest {
     private int numeroCuenta;
 
     public int getNumeroCuenta() {

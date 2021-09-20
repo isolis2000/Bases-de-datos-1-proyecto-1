@@ -1,10 +1,8 @@
 package test;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import pojo.*;
 import util.SQLConnections;
 
@@ -25,7 +23,6 @@ public class Controller {
                 + " @Usuario = '" + account.getUsuario()
                 + "', @Pass = '" + account.getPass()
                 + "', @EsAdministrador = " + account.getEsAdministrador();
-        System.out.println(command);
         return ResponseEntity.ok(sqlConnections.verifyLogin(command, conn));
     }
 
@@ -36,7 +33,6 @@ public class Controller {
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_AccountsTableClient " +
                 "@Usuario = '" + accountsTableRequest.getUsuario() + "'";
-        System.out.println(command);
         return ResponseEntity.ok(sqlConnections.getAccounts(command, conn));
     }
 
@@ -61,7 +57,7 @@ public class Controller {
     @CrossOrigin
     @PostMapping(value = "/beneficiariesForAccount", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ArrayList<Beneficiary>> adminAccountsTableRequest(@RequestBody BeneficiariesPerAccountRequest bpar) {
+    public ResponseEntity<ArrayList<Beneficiary>> adminAccountsTableRequest(@RequestBody AccountRequest bpar) {
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_BeneficiariosPorCuenta " +
                 "@Cuenta = " + bpar.getNumeroCuenta();
@@ -102,5 +98,25 @@ public class Controller {
                 ", @ParentezcoId = " + bM.getParentezcoId() +
                 ", @Porcentaje = " + bM.getPorcentaje();
         sqlConnections.postQuery(command, conn);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/totalPercentage", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Percentage> totalPercentage(@RequestBody AccountRequest accountRequest) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "EXEC sp_ObtenerPorcentajeTotalPorCuenta " +
+                "@Cuenta = " + accountRequest.getNumeroCuenta();
+        return ResponseEntity.ok(sqlConnections.getPercentage(command, conn));
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/numberOfBeneficiaries", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<NumberOfBeneficiaries> numberOfBeneficiaries(@RequestBody AccountRequest accountRequest) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "EXEC sp_ObtenerNumeroBeneficiariosPorCuenta " +
+                "@Cuenta = " + accountRequest.getNumeroCuenta();
+        return ResponseEntity.ok(sqlConnections.getNumberOfBeneficiaries(command, conn));
     }
 }
