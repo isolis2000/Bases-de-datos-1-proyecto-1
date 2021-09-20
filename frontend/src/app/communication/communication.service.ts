@@ -47,5 +47,13 @@ export class CommunicationService {
   public editBen(numCuenta:number, valorDocIdentidad:number, porcentaje:number, parentezcoId: number){
     return this.http.post<JSON>("http://localhost:8080/api/modifyBeneficiary", ({"numeroCuenta": numCuenta, "valorDocumentoIdentidadBeneficiario":valorDocIdentidad, "parentezcoId":parentezcoId,"porcentaje":porcentaje}))
   }
+
+  public totalPercentage(numCuenta:number){
+    return this.http.post<JSON>("http://localhost:8080/api/totalPercentage", ({"numeroCuenta": numCuenta}))
+  }
+
+  public numberOfBeneficiaries(numCuenta:number){
+    return this.http.post<JSON>("http://localhost:8080/api/numberOfBeneficiaries", ({"numeroCuenta": numCuenta}))
+  }
 }
 

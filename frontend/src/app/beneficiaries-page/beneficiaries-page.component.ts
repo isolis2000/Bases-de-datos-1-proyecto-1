@@ -10,8 +10,10 @@ export class BeneficiariesPageComponent implements OnInit {
   constructor() { }
   headers:any = ["Nombre", "Parentezco", "Porcentaje"]
   Rows = JSON.parse(localStorage.getItem("benXAccount")?.toString() || '{}')
+  numBen = (Number(localStorage.getItem("current_percentage")))
 
   ngOnInit(): void {
+    
   }
 
 }

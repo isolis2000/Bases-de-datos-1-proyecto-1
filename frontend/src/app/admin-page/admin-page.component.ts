@@ -11,6 +11,7 @@ export class AdminPageComponent implements OnInit {
   constructor() { }
   headers:any = ["Numero de Cuenta", "Tipo de cuenta", "Moneda", "Saldo"]
   Rows = JSON.parse(localStorage.getItem("tableData")?.toString() || '{}')
+  userStr:any=localStorage.getItem('current_username')
 
   ngOnInit(): void {
   }

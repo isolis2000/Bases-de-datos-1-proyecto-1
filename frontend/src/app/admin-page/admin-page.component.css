@@ -56,3 +56,9 @@ table {
   tr:nth-child(even) {
     background-color: rgb(204, 204, 204);
   }
+  .footer-bottom{
+    width: 100%;
+  position: absolute;
+  bottom: 0;
+
+}

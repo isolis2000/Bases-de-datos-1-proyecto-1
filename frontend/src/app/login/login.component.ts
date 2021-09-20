@@ -104,7 +104,6 @@ export class LoginComponent implements OnInit {
         
         this.CS.verifyLoginClient(username,password, esAdministrador).subscribe(res  => {
           const result: Result = JSON.parse(JSON.stringify(res))
-          alert(JSON.stringify(res))
           if(esAdministrador == 1 && username!='' && password != '' ){
             localStorage.setItem("Name", result.usuario );
             this.CS.loadAdminTable().subscribe(res => {

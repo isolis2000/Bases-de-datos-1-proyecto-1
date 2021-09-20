@@ -3,6 +3,13 @@ import { FormGroup, FormControl } from "@angular/forms";
 
 import { CommunicationService } from '../communication/communication.service';
 
+
+interface Result {
+  cantidadDeBeneficiarios:number
+
+}
+
+
 @Component({
   selector: 'app-client-settings',
   templateUrl: './client-settings.component.html',
@@ -15,6 +22,7 @@ export class ClientSettingsComponent implements OnInit {
    Rows = JSON.parse(localStorage.getItem("beneficiariesData")?.toString() || '{}')
   benValue:number = 0
   msg:string = ''
+  cuentaActual:any
 
   ngOnInit(): void {
   }
@@ -71,10 +79,20 @@ export class ClientSettingsComponent implements OnInit {
     })
   }
   addBen(numCuenta:any, valorDocIdentidad:any, porcentaje:any){
-    this.CS.addBen(Number(numCuenta),Number(valorDocIdentidad),Number(porcentaje),this.benValue).subscribe()
-    this.CS.loadBeneficiariesTable(localStorage.getItem("Name")).subscribe(res =>{
+    this.CS.numberOfBeneficiaries(numCuenta).subscribe(res=>{
+      const result: Result = JSON.parse(JSON.stringify(res))
+      localStorage.setItem("current_num_ben", String(result.cantidadDeBeneficiarios))
+    })
+    if(Number(localStorage.getItem("current_num_ben"))<3) {
+      this.CS.addBen(Number(numCuenta),Number(valorDocIdentidad),Number(porcentaje),this.benValue).subscribe()
+      this.CS.loadBeneficiariesTable(localStorage.getItem("Name")).subscribe(res =>{
       localStorage.setItem("beneficiariesData", JSON.stringify(res))
       window.location.reload();
     })
+    }else{
+      alert("Este numero de cuenta ya posee el maximo de beneficiarios(3)")
+      window.location.reload();
+    }
+    
   }
 }
