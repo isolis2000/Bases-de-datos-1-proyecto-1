@@ -55,4 +55,14 @@ public class Controller {
                 "@Usuario = '" + beneficiaryRequest.getUsuario() + "'";
         return ResponseEntity.ok(sqlConnections.getBeneficiaries(command, conn));
     }
+
+    @CrossOrigin
+    @PostMapping(value = "/beneficiariesForAccount", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<Beneficiary>> adminAccountsTableRequest(@RequestBody BeneficiariesPerAccountRequest bpar) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "EXEC sp_BeneficiariosPorCuenta " +
+                "@Cuenta = " + bpar.getNumeroCuenta();
+        return ResponseEntity.ok(sqlConnections.getBeneficiaries(command, conn));
+    }
 }
