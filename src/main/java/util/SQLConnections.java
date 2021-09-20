@@ -88,11 +88,12 @@ public class SQLConnections {
     }
 
     public void postQuery(String sqlStr, Connection conn){
+
         try {
             Statement stmt = conn.createStatement();
             stmt.executeQuery(sqlStr);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("query: " + sqlStr);
         }
     }
 }

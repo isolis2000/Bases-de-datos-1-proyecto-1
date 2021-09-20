@@ -69,8 +69,7 @@ public class Controller {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/addBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/addBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addBeneficiary(@RequestBody BeneficiaryModifiable bM) {
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_InsertarBeneficiario " +
@@ -82,8 +81,7 @@ public class Controller {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/modifyBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/modifyBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void modifyBeneficiary(@RequestBody BeneficiaryModifiable bM) {
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_ModificarBeneficiario " +
@@ -95,8 +93,7 @@ public class Controller {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/removeBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/removeBeneficiary", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void adminAccountsTableRequest(@RequestBody BeneficiaryModifiable bM) {
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_EliminarBeneficiario " +
