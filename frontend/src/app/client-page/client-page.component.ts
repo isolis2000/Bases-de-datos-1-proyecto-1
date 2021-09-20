@@ -31,7 +31,7 @@ export class ClientPageComponent implements OnInit {
   constructor(private CS:CommunicationService, private router: Router) { }
    headers:any = ["numCuenta", "tipoCuenta", "Moneda", "Saldo"]
    Rows = JSON.parse(localStorage.getItem("tableData")?.toString() || '{}')
-   
+   userStr:any=localStorage.getItem('current_username')
    
 
   

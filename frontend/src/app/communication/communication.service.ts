@@ -37,15 +37,15 @@ export class CommunicationService {
   }
 
   public deleteBen(numCuenta:number, valorDocIdentidad:number, porcentaje:number, parentezcoId: number){
-    return this.http.post<JSON>("http://localhost:8080/api/removeBeneficiary", ({"numeroCuenta": numCuenta, "valorDocumentoIdentidadBeneficiario":valorDocIdentidad, "ParentezcoId":parentezcoId,"porcentaje":porcentaje}))
+    return this.http.post<JSON>("http://localhost:8080/api/removeBeneficiary", ({"numeroCuenta": numCuenta, "valorDocumentoIdentidadBeneficiario":valorDocIdentidad, "parentezcoId":parentezcoId,"porcentaje":porcentaje}))
   }
 
   public addBen(numCuenta:number, valorDocIdentidad:number, porcentaje:number, parentezcoId: number){
-    return this.http.post<JSON>("http://localhost:8080/api/addBeneficiary", ({"numeroCuenta": numCuenta, "valorDocumentoIdentidadBeneficiario":valorDocIdentidad, "ParentezcoId":parentezcoId,"porcentaje":porcentaje}))
+    return this.http.post<JSON>("http://localhost:8080/api/addBeneficiary", ({"numeroCuenta": numCuenta, "valorDocumentoIdentidadBeneficiario":valorDocIdentidad, "parentezcoId":parentezcoId,"porcentaje":porcentaje}))
   }
 
   public editBen(numCuenta:number, valorDocIdentidad:number, porcentaje:number, parentezcoId: number){
-    return this.http.post<JSON>("http://localhost:8080/api/modifyBeneficiary", ({"numeroCuenta": numCuenta, "valorDocumentoIdentidadBeneficiario":valorDocIdentidad, "ParentezcoId":parentezcoId,"porcentaje":porcentaje}))
+    return this.http.post<JSON>("http://localhost:8080/api/modifyBeneficiary", ({"numeroCuenta": numCuenta, "valorDocumentoIdentidadBeneficiario":valorDocIdentidad, "parentezcoId":parentezcoId,"porcentaje":porcentaje}))
   }
 }
 

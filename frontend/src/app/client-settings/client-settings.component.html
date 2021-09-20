@@ -84,8 +84,12 @@
                       <button ngbDropdownItem (click)="updateBenValue(7)">Amigo</button>
                       <button ngbDropdownItem (click)="updateBenValue(8)">Amiga</button>
                     </div>
+                    <div class="alert alert-style border rounded" role="alert">
+                        {{msg}}
+                      </div>
                 </div>
-                
+                 
+                    
           </div>
           
 
@@ -93,9 +97,9 @@
               
               
               <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary settings-buttons" >Agregar Beneficiario</button>
-              <button type="submit" class="btn btn-primary settings-buttons">Eliminar Beneficiario</button>
-              <button type="submit" class="btn btn-primary settings-buttons"(click)="addBen(numCuenta.value,valorDocIdentidad.value,porcentaje.value)">Editar Beneficiario</button>
+                <button type="submit" class="btn btn-primary settings-buttons" (click)="addBen(numCuenta.value,valorDocIdentidad.value,porcentaje.value)" >Agregar Beneficiario</button>
+              <button type="submit" class="btn btn-primary settings-buttons" (click)="deleteBen(numCuenta.value,valorDocIdentidad.value,porcentaje.value)">Eliminar Beneficiario</button>
+              <button type="submit" class="btn btn-primary settings-buttons" (click)="editBen(numCuenta.value,valorDocIdentidad.value,porcentaje.value)"> Editar Beneficiario</button>
               </div>
               
 
