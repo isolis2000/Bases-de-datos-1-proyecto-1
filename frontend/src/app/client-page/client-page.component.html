@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="space">
-                <a [routerLink]="['/clientPage']">
+                <a [routerLink]="['/home']">
                     <i class="bi bi-credit-card-fill settings-icons"></i>
                 <h5 class="blueColor inline">
                     Servicios varios 
@@ -47,7 +47,7 @@
             
                 <tr *ngFor = "let row of Rows">
                     <td >
-                      {{ row.numCuenta }}
+                       <a [routerLink]="['/statements']"> {{ row.numCuenta }} </a>
                     </td>
                     <td>
                         {{row.tipoCuenta}}

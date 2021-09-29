@@ -16,6 +16,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CommonModule } from "@angular/common";
 import { SecondheaderComponent } from './secondheader/secondheader.component';
 import { BeneficiariesPageComponent } from './beneficiaries-page/beneficiaries-page.component';
+import { StatementsComponent } from './statements/statements.component';
+import { IndividualStatementComponent } from './individual-statement/individual-statement.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { BeneficiariesPageComponent } from './beneficiaries-page/beneficiaries-p
     ClientSettingsComponent,
     AdminPageComponent,
     SecondheaderComponent,
-    BeneficiariesPageComponent
+    BeneficiariesPageComponent,
+    StatementsComponent,
+    IndividualStatementComponent
 
   ],
   imports: [
