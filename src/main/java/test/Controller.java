@@ -33,7 +33,7 @@ public class Controller {
     public ResponseEntity<ArrayList<AccountsTableResponse>> accountsTableRequest(@RequestBody AccountsTableRequest accountsTableRequest){
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_TablaCuentas " +
-                "@Usuario = '" + accountsTableRequest.getUsuario() + "'";
+                "@inUsuario = '" + accountsTableRequest.getUsuario() + "'";
         return ResponseEntity.ok(sqlConnections.getAccounts(command, conn));
     }
 
