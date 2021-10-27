@@ -163,7 +163,7 @@ public class Controller {
                 " ,@inDescripcion = '" + savingsAccount.getDescripcion() +
                 "' ,@inActivado = " + savingsAccount.getActivado() +
                 " ,@inFechaInicio = '" + savingsAccount.getFechaInicio() +
-                "' ,@inFechaFinal = " + savingsAccount.getFechaFinal() + "'";
+                "' ,@inFechaFinal = '" + savingsAccount.getFechaFinal() + "'";
         sqlConnections.postQuery(command, conn);
     }
 
@@ -178,7 +178,7 @@ public class Controller {
                 " ,@inDescripcion = '" + savingsAccount.getDescripcion() +
                 "' ,@inActivado = " + savingsAccount.getActivado() +
                 " ,@inFechaInicio = '" + savingsAccount.getFechaInicio() +
-                "' ,@inFechaFinal = " + savingsAccount.getFechaFinal() + "'";
+                "' ,@inFechaFinal = '" + savingsAccount.getFechaFinal() + "'";
         sqlConnections.postQuery(command, conn);
     }
 

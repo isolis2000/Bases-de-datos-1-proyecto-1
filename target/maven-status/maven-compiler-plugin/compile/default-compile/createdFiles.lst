@@ -1,2 +1,5 @@
-pojo/AccountsTableRequest.class
-pojo/AccountsTableResponse.class
+pojo\SavingsAccountView.class
+pojo\AccountsTableResponse.class
+pojo\SavingsAccountList.class
+pojo\SavingsAccount.class
+pojo\AccountsTableRequest.class
