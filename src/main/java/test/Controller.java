@@ -20,9 +20,10 @@ public class Controller {
     public ResponseEntity<Account> loginRequest(@RequestBody Account account) {
         Connection conn = sqlConnections.establishConnection();
         String command = "EXEC sp_VerificarLogin"
-                + " @Usuario = '" + account.getUsuario()
-                + "', @Pass = '" + account.getPass()
-                + "', @EsAdministrador = " + account.getEsAdministrador();
+                + " @inUsuario = '" + account.getUsuario()
+                + "', @inPass = '" + account.getPass()
+                + "', @inEsAdministrador = " + account.getEsAdministrador();
+        System.out.println(command);
         return ResponseEntity.ok(sqlConnections.verifyLogin(command, conn));
     }
 
@@ -129,4 +130,14 @@ public class Controller {
                 "@inCuenta = " + accountStatementRequest.getCuenta();
         return ResponseEntity.ok(sqlConnections.accountStatementsQuery(command, conn));
     }
+
+//    @CrossOrigin
+//    @PostMapping(value = "/individualStatement", consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<ArrayList<AccountStatement>> accountStatements(@RequestBody AccountStatementRequest accountStatementRequest) {
+//        Connection conn = sqlConnections.establishConnection();
+//        String command = "exec sp_ObtenerEstadosDeCuenta " +
+//                "@inCuenta = " + accountStatementRequest.getCuenta();
+//        return ResponseEntity.ok(sqlConnections.accountStatementsQuery(command, conn));
+//    }
 }

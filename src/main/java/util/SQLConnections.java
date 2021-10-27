@@ -37,7 +37,7 @@ public class SQLConnections {
             ResultSet rs = stmt.executeQuery(sqlStr);
             while (rs.next()){
                 account.setUsuario(rs.getString("Usuario"));
-                account.setPass(rs.getString("Pass"));
+                account.setPass(rs.getString("Password"));
                 account.setValorDocumentoIdentidad(rs.getInt("ValorDocumentoIdentidad"));
                 account.setEsAdministrador(rs.getInt("EsAdministrador"));
             }
