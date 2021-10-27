@@ -141,4 +141,56 @@ public class Controller {
                 "@idEstado = " + individualStatementRequest.getId();
         return ResponseEntity.ok(sqlConnections.individualStatementsQuery(command, conn));
     }
+
+//    @CrossOrigin
+//    @PostMapping(value = "/savingsTable", consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<ArrayList<SavingsAccount>> individualStatements(@RequestBody SavingsAccount savingsAccount) {
+//        Connection conn = sqlConnections.establishConnection();
+//        System.out.println("id: " + individualStatementRequest.getId());
+//        String command = "exec sp_ObtenerMovimientosDeEstadosDeCuenta " +
+//                "@idEstado = " + individualStatementRequest.getId();
+//        return ResponseEntity.ok(sqlConnections.individualStatementsQuery(command, conn));
+//    }
+
+    @CrossOrigin
+    @PostMapping(value = "/addSavingsTable", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addSavingsTable(@RequestBody SavingsAccount savingsAccount) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "exec sp_AbrirCuentaAhorro" +
+                " @inNumeroCuenta = " + savingsAccount.getNumeroCuenta() +
+                " @inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro() +
+                " @inDescripcion = '" + savingsAccount.getDescripcion() +
+                "' @inActivado = " + savingsAccount.getActivado() +
+                " @inFechaInicio = '" + savingsAccount.getFechaInicio() +
+                "' @inFechaFinal = " + savingsAccount.getFechaFinal() + "'";
+        sqlConnections.postQuery(command, conn);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/editSavingsTable", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void editSavingsTable(@RequestBody SavingsAccount savingsAccount) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "exec sp_ModificarCuentaAhorro" +
+                " @inNumeroCuenta = " + savingsAccount.getNumeroCuenta() +
+                " @inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro() +
+                " @inDescripcion = '" + savingsAccount.getDescripcion() +
+                "' @inActivado = " + savingsAccount.getActivado() +
+                " @inFechaInicio = '" + savingsAccount.getFechaInicio() +
+                "' @inFechaFinal = " + savingsAccount.getFechaFinal() + "'";
+        sqlConnections.postQuery(command, conn);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/deleteSavingsTable", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteSavingsTable(@RequestBody SavingsAccount savingsAccount) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "exec sp_DesactivarCuentaAhorro" +
+                " @inNumeroCuenta = " + savingsAccount.getNumeroCuenta() +
+                " @inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro();
+        sqlConnections.postQuery(command, conn);
+    }
 }
