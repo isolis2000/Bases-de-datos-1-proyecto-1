@@ -4,7 +4,6 @@
   font-size: 40px;
 
 }
-
 h4{
     margin-top: 0px;
     font-size: 40px;
@@ -16,6 +15,7 @@ h4{
 }
 .infoBox{
     margin-top: 20px;
+    margin-bottom: 100px;
     border-color: rgb(0, 46, 87) !important;
     border-width: 2px !important;
 }
@@ -27,13 +27,13 @@ h4{
 }
 
 table {
-    margin-right: 10px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
+  margin-right: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
   
   td, th {
     border: 1px solid rgb(197, 197, 197);

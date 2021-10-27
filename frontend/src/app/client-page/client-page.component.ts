@@ -32,7 +32,7 @@ export class ClientPageComponent implements OnInit {
    userStr:any=localStorage.getItem('current_username')
    accountPercentage:any
    numBen:any
-   
+   cuentaActual:number=0
 
   
   
@@ -45,10 +45,6 @@ export class ClientPageComponent implements OnInit {
   }
 
   goToBen(numCuenta:any){
-    
-
-      
-
       this.CS.loadBeneficiariesTableApart(Number(numCuenta)).subscribe(res =>{
         if(numCuenta != ''){
           localStorage.setItem("benXAccount", JSON.stringify(res))  
@@ -86,6 +82,39 @@ export class ClientPageComponent implements OnInit {
         }
       })
     }
+
+  goToStatements(numCuenta:any){
+    localStorage.setItem("CuentaActual",numCuenta) 
+    this.CS.getStatements(Number(numCuenta)).subscribe(res=>{
+      if(numCuenta != ''){
+        localStorage.setItem("AccountXStatements", JSON.stringify(res))
+        if(localStorage.getItem("AccountXStatements") != '[]'){
+          this.router.navigate(['/individualStatement'])
+        }
+        if(localStorage.getItem("AccountXStatements") == '[]'){
+          alert("La Cuenta no existe")
+          this.refresh()
+        }
+      }
+      else{
+        alert("Por favor ingrese el numero de una cuenta")
+      } 
+        
+    })
+  }
+
+    goToSavingsAccounts(numCuenta:any){
+      localStorage.setItem("CuentaActual",numCuenta) 
+      this.CS.getSavingsTables(Number(numCuenta)).subscribe(res=>{
+
+          localStorage.setItem("savingsTable", JSON.stringify(res))
+          
+            this.router.navigate(['/savingAccount'])
+            
+          
+      })
+    }
+
     
     
     

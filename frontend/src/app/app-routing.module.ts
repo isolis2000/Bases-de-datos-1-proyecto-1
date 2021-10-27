@@ -7,7 +7,9 @@ import { ClientSettingsComponent } from './client-settings/client-settings.compo
 import { HomeComponent } from './home/home.component';
 import { IndividualStatementComponent } from './individual-statement/individual-statement.component';
 import { LoginComponent } from './login/login.component';
+import { SavingAccountComponent } from './saving-account/saving-account.component';
 import { SecondheaderComponent } from './secondheader/secondheader.component';
+import { StatementDetailComponent } from './statement-detail/statement-detail.component';
 import { StatementsComponent } from './statements/statements.component';
 
 
@@ -51,6 +53,14 @@ const routes: Routes = [
   {
     path: 'individualStatement',
     component: IndividualStatementComponent
+  },
+  {
+    path: 'statementDetail',
+    component: StatementDetailComponent
+  },
+  {
+    path: 'savingAccount',
+    component: SavingAccountComponent
   }
 ];
 

@@ -47,7 +47,7 @@
             
                 <tr *ngFor = "let row of Rows">
                     <td >
-                       <a [routerLink]="['/statements']"> {{ row.numCuenta }} </a>
+                       {{ row.numCuenta }}
                     </td>
                     <td>
                         {{row.tipoCuenta}}
@@ -63,9 +63,14 @@
             </table>
             <div class="d-flex justify-content-center">
                 
-                <input class="form-control ben-inputs " #benInfo id="benInfo" placeholder="Digite una cuenta para ver sus beneficiarios">
+                <input class="form-control ben-inputs " #benInfo id="benInfo" placeholder="Digite una cuenta">
                   
-                <button type="submit"  class="btn btn-primary settings-buttons" (click)="goToBen(benInfo.value)" >Buscar</button>
+                
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit"  class="btn btn-primary settings-buttons" (click)="goToBen(benInfo.value)" >Ver Beneficiarios</button>
+                <button type="submit"  class="btn btn-primary settings-buttons" (click)="goToStatements(benInfo.value)" >Ver Estado de Cuenta</button>
+                <button type="submit"  class="btn btn-primary settings-buttons" (click)="goToSavingsAccounts(benInfo.value)" >Ver Cuentas de Ahorro</button>
             </div>
 
               

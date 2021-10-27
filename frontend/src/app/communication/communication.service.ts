@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { NumericLiteral } from 'typescript';
 
 @Injectable({
     providedIn: 'root'
@@ -55,5 +56,32 @@ export class CommunicationService {
   public numberOfBeneficiaries(numCuenta:number){
     return this.http.post<JSON>("http://localhost:8080/api/numberOfBeneficiaries", ({"numeroCuenta": numCuenta}))
   }
+
+  public getStatements(numCuenta:number){
+    return this.http.post<JSON>("http://localhost:8080/api/accountStatements", ({"cuenta": numCuenta}))
+  }
+
+  public getStatementsDetails(estadoId:number){
+    return this.http.post<JSON>("http://localhost:8080/api/individualStatements", ({"id": estadoId}))
+  }
+
+  public getSavingsTables(numCuenta:number){
+    return this.http.post<JSON>("http://localhost:8080/api/savingsTable", ({"numeroCuenta": numCuenta}))
+  }
+
+  public addSavingsTables(numCuenta:number, numCuentaAhorro:number, activado:number, descripcion:string, fechaInicio:string, fechaFinal:string){
+    return this.http.post<JSON>("http://localhost:8080/api/addSavingsTable", ({"numeroCuenta":numCuenta,"numeroCuentaAhorro":numCuentaAhorro,"activado":activado,"descripcion":descripcion,"fechaInicio":fechaInicio,"fechaFinal":fechaFinal}))
+  }
+
+  public editSavingsTables(numCuenta:number, numCuentaAhorro:number, activado:number, descripcion:string, fechaInicio:string, fechaFinal:string){
+    return this.http.post<JSON>("http://localhost:8080/api/editSavingsTable", ({"numeroCuenta":numCuenta,"numeroCuentaAhorro":numCuentaAhorro,"activado":activado,"descripcion":descripcion,"fechaInicio":fechaInicio,"fechaFinal":fechaFinal}))
+  }
+
+  public deleteSavingsTables(numCuenta:number, numCuentaAhorro:number, activado:number, descripcion:string, fechaInicio:string, fechaFinal:string){
+    return this.http.post<JSON>("http://localhost:8080/api/deleteSavingsTable", ({"numeroCuenta":numCuenta,"numeroCuentaAhorro":numCuentaAhorro,"activado":activado,"descripcion":descripcion,"fechaInicio":fechaInicio,"fechaFinal":fechaFinal}))
+  }
+
+
+
 }
 

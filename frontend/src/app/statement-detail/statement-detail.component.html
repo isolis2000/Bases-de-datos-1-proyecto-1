@@ -1,0 +1,68 @@
+<app-secondheader></app-secondheader>
+<div class="container ">
+    <div class="row ">
+      <div class="col-md-12 d-flex justify-content-center">
+        <p class="titulo">Cuenta {{cuentaActual}}</p>
+      </div>
+        <div class="col-md-12 infoBox rounded border justify-content-center ">
+
+          <table>
+            <tr>
+              <th *ngFor = "let column of headers">
+                  {{column}}
+              </th>
+            </tr>
+        
+            <tr *ngFor = "let row of Rows">
+                <td >
+                  {{ row.compra }}
+                </td>
+                <td>
+                    {{row.descripcion}}
+                </td>
+                <td>
+                    {{row.fecha}}
+                </td>
+                <td>
+                  {{row.moneda}}
+              </td>
+              <td>
+                {{row.montoMonedaCuenta}}
+              </td>
+              <td>
+                {{row.montoMonedaMovimiento}}
+              </td>
+              <td>
+                {{row.nuevoSaldo}}
+              </td>
+              <td>
+                {{row.operacion}}
+              </td>
+              <td>
+                {{row.venta}}
+              </td>
+            </tr>
+        
+        </table>
+                <div class="d-flex justify-content-center">
+                    
+                    <button class="btn settings-buttons" type="submit" [routerLink]="['/individualStatement']" >Volver</button>
+                </div>
+                
+            
+            
+            <div>
+                
+            </div>
+        </div>
+
+              
+
+
+
+    </div>
+
+</div>
+
+<app-footer></app-footer>
+

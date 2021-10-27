@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommunicationService } from '../communication/communication.service';
 
 @Component({
   selector: 'app-statements',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatementsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private CS:CommunicationService, private router: Router) { }
+  currentAccount:any=localStorage.getItem('current_username')
   ngOnInit(): void {
   }
 
+  
 }

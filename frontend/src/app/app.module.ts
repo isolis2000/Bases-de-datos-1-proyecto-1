@@ -18,6 +18,8 @@ import { SecondheaderComponent } from './secondheader/secondheader.component';
 import { BeneficiariesPageComponent } from './beneficiaries-page/beneficiaries-page.component';
 import { StatementsComponent } from './statements/statements.component';
 import { IndividualStatementComponent } from './individual-statement/individual-statement.component';
+import { StatementDetailComponent } from './statement-detail/statement-detail.component';
+import { SavingAccountComponent } from './saving-account/saving-account.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { IndividualStatementComponent } from './individual-statement/individual-
     SecondheaderComponent,
     BeneficiariesPageComponent,
     StatementsComponent,
-    IndividualStatementComponent
+    IndividualStatementComponent,
+    StatementDetailComponent,
+    SavingAccountComponent
 
   ],
   imports: [
