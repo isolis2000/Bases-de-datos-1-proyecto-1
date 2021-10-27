@@ -159,11 +159,11 @@ public class Controller {
         Connection conn = sqlConnections.establishConnection();
         String command = "exec sp_AbrirCuentaAhorro" +
                 " @inNumeroCuenta = " + savingsAccount.getNumeroCuenta() +
-                " @inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro() +
-                " @inDescripcion = '" + savingsAccount.getDescripcion() +
-                "' @inActivado = " + savingsAccount.getActivado() +
-                " @inFechaInicio = '" + savingsAccount.getFechaInicio() +
-                "' @inFechaFinal = " + savingsAccount.getFechaFinal() + "'";
+                " ,@inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro() +
+                " ,@inDescripcion = '" + savingsAccount.getDescripcion() +
+                "' ,@inActivado = " + savingsAccount.getActivado() +
+                " ,@inFechaInicio = '" + savingsAccount.getFechaInicio() +
+                "' ,@inFechaFinal = " + savingsAccount.getFechaFinal() + "'";
         sqlConnections.postQuery(command, conn);
     }
 
@@ -174,11 +174,11 @@ public class Controller {
         Connection conn = sqlConnections.establishConnection();
         String command = "exec sp_ModificarCuentaAhorro" +
                 " @inNumeroCuenta = " + savingsAccount.getNumeroCuenta() +
-                " @inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro() +
-                " @inDescripcion = '" + savingsAccount.getDescripcion() +
-                "' @inActivado = " + savingsAccount.getActivado() +
-                " @inFechaInicio = '" + savingsAccount.getFechaInicio() +
-                "' @inFechaFinal = " + savingsAccount.getFechaFinal() + "'";
+                " ,@inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro() +
+                " ,@inDescripcion = '" + savingsAccount.getDescripcion() +
+                "' ,@inActivado = " + savingsAccount.getActivado() +
+                " ,@inFechaInicio = '" + savingsAccount.getFechaInicio() +
+                "' ,@inFechaFinal = " + savingsAccount.getFechaFinal() + "'";
         sqlConnections.postQuery(command, conn);
     }
 
@@ -189,7 +189,7 @@ public class Controller {
         Connection conn = sqlConnections.establishConnection();
         String command = "exec sp_DesactivarCuentaAhorro" +
                 " @inNumeroCuenta = " + savingsAccount.getNumeroCuenta() +
-                " @inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro();
+                " ,@inNumeroCuentaAhorro = " + savingsAccount.getNumeroCuentaAhorro();
         sqlConnections.postQuery(command, conn);
     }
 }
