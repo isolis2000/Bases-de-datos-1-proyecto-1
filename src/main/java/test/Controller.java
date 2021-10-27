@@ -142,16 +142,15 @@ public class Controller {
         return ResponseEntity.ok(sqlConnections.individualStatementsQuery(command, conn));
     }
 
-//    @CrossOrigin
-//    @PostMapping(value = "/savingsTable", consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<ArrayList<SavingsAccount>> individualStatements(@RequestBody SavingsAccount savingsAccount) {
-//        Connection conn = sqlConnections.establishConnection();
-//        System.out.println("id: " + individualStatementRequest.getId());
-//        String command = "exec sp_ObtenerMovimientosDeEstadosDeCuenta " +
-//                "@idEstado = " + individualStatementRequest.getId();
-//        return ResponseEntity.ok(sqlConnections.individualStatementsQuery(command, conn));
-//    }
+    @CrossOrigin
+    @PostMapping(value = "/savingsTable", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<SavingsAccountView>> savingsTable(@RequestBody AccountRequest accountRequest) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "exec sp_VerCuentasAhorro " +
+                "@inNumeroCuenta = " + accountRequest.getNumeroCuenta();
+        return ResponseEntity.ok(sqlConnections.savingsTableQuery(command, conn));
+    }
 
     @CrossOrigin
     @PostMapping(value = "/addSavingsTable", consumes = MediaType.APPLICATION_JSON_VALUE,

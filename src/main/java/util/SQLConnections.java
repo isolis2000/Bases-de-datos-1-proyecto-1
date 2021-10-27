@@ -113,6 +113,26 @@ public class SQLConnections {
         return numberOfBeneficiaries;
     }
 
+    public ArrayList<SavingsAccountView> savingsTableQuery(String sqlStr, Connection conn){
+        SavingsAccountList savingsAccountList = new SavingsAccountList();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlStr);
+            while (rs.next()){
+                SavingsAccountView savingsAccountView = new SavingsAccountView();
+                savingsAccountView.setNumeroCuentaAhorro(rs.getInt("NumeroCuentaAhorro"));
+                savingsAccountView.setDescripcion(rs.getString("Descripcion"));
+                savingsAccountView.setActivado(rs.getInt("Activado"));
+                savingsAccountView.setFechaInicio(rs.getString("FechaInicio"));
+                savingsAccountView.setFechaFin(rs.getString("FechaFin"));
+                savingsAccountList.addToIndividualStatements(savingsAccountView);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return savingsAccountList.getIndividualStatements();
+    }
+
     public ArrayList<AccountStatement> accountStatementsQuery(String sqlStr, Connection conn){
         AccountStatementList asl = new AccountStatementList();
         try {
