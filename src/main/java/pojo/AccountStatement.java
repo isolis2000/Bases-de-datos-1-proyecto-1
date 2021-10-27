@@ -2,9 +2,17 @@ package pojo;
 
 public class AccountStatement {
     private String fechaInicio, fechaFinal;
-    private int saldoMinimo, saldoInicio, saldoFinal, operacionesEnATM, operacionEnCajeroHumano;
+    private int saldoMinimo, saldoInicio, saldoFinal, operacionesEnATM, operacionEnCajeroHumano, Id;
 
     public AccountStatement() {
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 
     public String getFechaInicio() {

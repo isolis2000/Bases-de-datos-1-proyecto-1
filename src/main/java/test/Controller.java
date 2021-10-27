@@ -131,13 +131,14 @@ public class Controller {
         return ResponseEntity.ok(sqlConnections.accountStatementsQuery(command, conn));
     }
 
-//    @CrossOrigin
-//    @PostMapping(value = "/individualStatement", consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<ArrayList<AccountStatement>> accountStatements(@RequestBody AccountStatementRequest accountStatementRequest) {
-//        Connection conn = sqlConnections.establishConnection();
-//        String command = "exec sp_ObtenerEstadosDeCuenta " +
-//                "@inCuenta = " + accountStatementRequest.getCuenta();
-//        return ResponseEntity.ok(sqlConnections.accountStatementsQuery(command, conn));
-//    }
+    @CrossOrigin
+    @PostMapping(value = "/individualStatements", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<IndividualStatement>> individualStatements(@RequestBody IndividualStatementRequest individualStatementRequest) {
+        Connection conn = sqlConnections.establishConnection();
+        System.out.println("id: " + individualStatementRequest.getId());
+        String command = "exec sp_ObtenerMovimientosDeEstadosDeCuenta " +
+                "@idEstado = " + individualStatementRequest.getId();
+        return ResponseEntity.ok(sqlConnections.individualStatementsQuery(command, conn));
+    }
 }

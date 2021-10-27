@@ -127,12 +127,37 @@ public class SQLConnections {
                 statement.setSaldoFinal(rs.getInt("SaldoFinal"));
                 statement.setOperacionesEnATM(rs.getInt("CantidadOperacionesATM"));
                 statement.setOperacionEnCajeroHumano(rs.getInt("CantidadOperacionesHumano"));
+                statement.setId(rs.getInt("Id"));
                 asl.addToAccountsTableResponses(statement);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return asl.getAccountStatementArrayList();
+    }
+
+    public ArrayList<IndividualStatement> individualStatementsQuery(String sqlStr, Connection conn){
+        IndividualStatementList isl = new IndividualStatementList();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlStr);
+            while (rs.next()){
+                IndividualStatement statement = new IndividualStatement();
+                statement.setDescripcion(rs.getString("Descripcion"));
+                statement.setOperacion(rs.getInt("Operacion"));
+                statement.setMoneda(rs.getString("Moneda"));
+                statement.setVenta(rs.getInt("Venta"));
+                statement.setCompra(rs.getInt("Compra"));
+                statement.setMontoMonedaMovimiento(rs.getInt("MontoMonedaMovimiento"));
+                statement.setMontoMonedaCuenta(rs.getInt("MontoMonedaCuenta"));
+                statement.setNuevoSaldo(rs.getInt("NuevoSaldo"));
+                statement.setFecha(rs.getString("Fecha"));
+                isl.addToIndividualStatements(statement);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isl.getIndividualStatements();
     }
 
     public void postQuery(String sqlStr, Connection conn){
