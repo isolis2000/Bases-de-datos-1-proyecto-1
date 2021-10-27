@@ -119,4 +119,14 @@ public class Controller {
                 "@Cuenta = " + accountRequest.getNumeroCuenta();
         return ResponseEntity.ok(sqlConnections.getNumberOfBeneficiaries(command, conn));
     }
+
+    @CrossOrigin
+    @PostMapping(value = "/accountStatements", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<AccountStatement>> accountStatements(@RequestBody AccountStatementRequest accountStatementRequest) {
+        Connection conn = sqlConnections.establishConnection();
+        String command = "exec sp_ObtenerEstadosDeCuenta " +
+                "@inCuenta = " + accountStatementRequest.getCuenta();
+        return ResponseEntity.ok(sqlConnections.accountStatementsQuery(command, conn));
+    }
 }

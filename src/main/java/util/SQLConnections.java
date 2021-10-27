@@ -113,6 +113,28 @@ public class SQLConnections {
         return numberOfBeneficiaries;
     }
 
+    public ArrayList<AccountStatement> accountStatementsQuery(String sqlStr, Connection conn){
+        AccountStatementList asl = new AccountStatementList();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlStr);
+            while (rs.next()){
+                AccountStatement statement = new AccountStatement();
+                statement.setFechaInicio(rs.getString("FechaInicio"));
+                statement.setFechaFinal(rs.getString("FechaFinal"));
+                statement.setSaldoMinimo(rs.getInt("SaldoMinimo"));
+                statement.setSaldoInicio(rs.getInt("SaldoInicio"));
+                statement.setSaldoFinal(rs.getInt("SaldoFinal"));
+                statement.setOperacionesEnATM(rs.getInt("CantidadOperacionesATM"));
+                statement.setOperacionEnCajeroHumano(rs.getInt("CantidadOperacionesHumano"));
+                asl.addToAccountsTableResponses(statement);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return asl.getAccountStatementArrayList();
+    }
+
     public void postQuery(String sqlStr, Connection conn){
 
         try {
